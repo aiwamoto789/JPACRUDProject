@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class JPAEntities {
+public class RosterEntities {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int player_id;
