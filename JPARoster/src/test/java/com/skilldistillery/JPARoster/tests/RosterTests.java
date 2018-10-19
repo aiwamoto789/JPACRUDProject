@@ -1,4 +1,4 @@
-package com.skilldistillery.JPARoster.entities;
+package com.skilldistillery.JPARoster.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
