@@ -14,7 +14,6 @@ public class Player {
 	private int playerId;
 	@Column(name="player_name")
 	private String playerName;
-	private String college;
 	private String position;
 	@Column(name="roster_status")
 	private String rosterStatus;
@@ -25,6 +24,8 @@ public class Player {
 	private String experience;
 	@Column(name="contract_year")
 	private boolean contractYear;
+	private String college;
+	
 	public int getPlayerId() {
 		return playerId;
 	}
