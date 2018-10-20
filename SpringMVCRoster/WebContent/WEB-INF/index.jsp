@@ -9,8 +9,13 @@
 </head>
 <body>
 	<form action="getPlayer.do" method="GET">
-		<input type="text" name="fid" /> <input type="submit"
+		<input type="text" name="id" /> <input type="submit"
 			value="Find Player" />
 	</form>
+	<c:forEach var="players" items="${players}">
+			<ul>
+				<li><a href="getFilm.do?id=${player.id}">${player.name}</a></li>
+			</ul>
+		</c:forEach>
 </body>
 </html>

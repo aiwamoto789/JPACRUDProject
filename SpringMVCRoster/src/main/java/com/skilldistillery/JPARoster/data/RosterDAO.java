@@ -8,5 +8,5 @@ public interface RosterDAO {
 	public Player findbyPosition(String position);
 	public Player create(Player player);
 	public Player update(int id, Player player);
-	public Player cut(int id);
+	public boolean cut(int id);
 }
