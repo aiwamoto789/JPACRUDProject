@@ -1,12 +1,14 @@
-package com.skilldistillery.JPARoster.entities;
+package com.skilldistillery.roster.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Roster")
 public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,7 +25,7 @@ public class Player {
 	private int age;
 	private String experience;
 	@Column(name="contract_year")
-	private boolean contractYear;
+	private String contractYear;
 	private String college;
 	
 	public int getPlayerId() {
@@ -37,12 +39,6 @@ public class Player {
 	}
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
-	}
-	public String getCollege() {
-		return college;
-	}
-	public void setCollege(String college) {
-		this.college = college;
 	}
 	public String getPosition() {
 		return position;
@@ -86,11 +82,17 @@ public class Player {
 	public void setExperience(String experience) {
 		this.experience = experience;
 	}
-	public boolean isContractYear() {
+	public String isContractYear() {
 		return contractYear;
 	}
-	public void setContractYear(boolean contractYear) {
+	public void setContractYear(String contractYear) {
 		this.contractYear = contractYear;
+	}
+	public String getCollege() {
+		return college;
+	}
+	public void setCollege(String college) {
+		this.college = college;
 	}
 	@Override
 	public int hashCode() {
@@ -98,7 +100,7 @@ public class Player {
 		int result = 1;
 		result = prime * result + age;
 		result = prime * result + ((college == null) ? 0 : college.hashCode());
-		result = prime * result + (contractYear ? 1231 : 1237);
+		result = prime * result + ((contractYear == null) ? 0 : contractYear.hashCode());
 		result = prime * result + ((experience == null) ? 0 : experience.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(height);
@@ -127,7 +129,10 @@ public class Player {
 				return false;
 		} else if (!college.equals(other.college))
 			return false;
-		if (contractYear != other.contractYear)
+		if (contractYear == null) {
+			if (other.contractYear != null)
+				return false;
+		} else if (!contractYear.equals(other.contractYear))
 			return false;
 		if (experience == null) {
 			if (other.experience != null)
@@ -161,10 +166,31 @@ public class Player {
 	}
 	@Override
 	public String toString() {
-		return "Player [playerId=" + playerId + ", playerName=" + playerName + ", college=" + college + ", position="
-				+ position + ", rosterStatus=" + rosterStatus + ", number=" + number + ", height=" + height
-				+ ", weight=" + weight + ", age=" + age + ", experience=" + experience + ", contractYear="
-				+ contractYear + "]";
+		return "Player [playerId=" + playerId + ", playerName=" + playerName + ", position=" + position
+				+ ", rosterStatus=" + rosterStatus + ", number=" + number + ", height=" + height + ", weight=" + weight
+				+ ", age=" + age + ", experience=" + experience + ", contractYear=" + contractYear + ", college="
+				+ college + "]";
 	}
+	
+	
+	public Player(int playerId, String playerName, String position, String rosterStatus, int number, double height,
+			int weight, int age, String experience, String contractYear, String college) {
+		super();
+		this.playerId = playerId;
+		this.playerName = playerName;
+		this.position = position;
+		this.rosterStatus = rosterStatus;
+		this.number = number;
+		this.height = height;
+		this.weight = weight;
+		this.age = age;
+		this.experience = experience;
+		this.contractYear = contractYear;
+		this.college = college;
+	}
+	public Player() {
+		super();
+	}
+	
 	
 }

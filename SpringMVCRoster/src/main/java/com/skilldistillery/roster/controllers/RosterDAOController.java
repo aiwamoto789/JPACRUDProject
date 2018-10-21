@@ -1,4 +1,6 @@
-package com.skilldistillery.JPARoster.controllers;
+package com.skilldistillery.roster.controllers;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skilldistillery.JPARoster.data.RosterDAO;
-import com.skilldistillery.JPARoster.entities.Player;
+import com.skilldistillery.roster.data.RosterDAO;
+import com.skilldistillery.roster.entities.Player;
 
 @Controller
-public class RosterDAOController implements RosterDAO {
+public class RosterDAOController {
 	
 	@Autowired
 	private RosterDAO rosterDAO;
@@ -28,22 +30,22 @@ public class RosterDAOController implements RosterDAO {
 	}
 
 	@RequestMapping(path="getPlayer.do", method = RequestMethod.GET)
-	public Player findUpForContract(Boolean contractYear) {
+	public ModelAndView findUpForContract(Boolean contractYear) {
 		ModelAndView mv = new ModelAndView();
-		Player player = rosterDAO.findUpForContract(true);     
+		List<Player> players = rosterDAO.findUpForContract("true");     
 	    // film is unmanaged after it is outside of the transaction that exists in the DAO
 
-	    mv.addObject("player", player);
+	    mv.addObject("player", players);
 	    mv.setViewName("/WEB-INF/film/result.jsp");
-	    return player;
+	    return mv;
 	}
 
 	@RequestMapping(path="getPlayer.do", method = RequestMethod.GET)
-	public Player findbyPosition(String position) {
+	public ModelAndView findbyPosition(String position) {
 		ModelAndView mv = new ModelAndView();
 		Player player = rosterDAO.findbyPosition(position);     
 	    // film is unmanaged after it is outside of the transaction that exists in the DAO
-
+		//getResultList()
 	    mv.addObject("player", player);
 	    mv.setViewName("/WEB-INF/Roster/result.jsp");
 	    return mv;

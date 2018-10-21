@@ -1,4 +1,6 @@
-package com.skilldistillery.JPARoster.data;
+package com.skilldistillery.roster.data;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,7 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.skilldistillery.JPARoster.entities.Player;
+import com.skilldistillery.roster.entities.Player;
 
 @Transactional
 @Repository
@@ -22,12 +24,17 @@ public class RosterDAOImpl implements RosterDAO {
 		}
 		return playerName;
 	}
-
 	@Override
-	public Player findUpForContract(Boolean contractYear) {
-		Player playerContract = em.find(Player.class, contractYear);
-		if (playerContract != null) {
-		}
+	public List<Player> getAllPlayers() {
+		String query = "SELECT player FROM Player player";
+		List<Player> players = em.createQuery(query, Player.class).getResultList();
+		return players;
+	}
+	@Override
+	public List<Player> findUpForContract(String contractYear) {
+		String query = "SELECT player FROM Roster player WHERE player.contractYear = 'true'";
+		List<Player> playerContract = em.createQuery(query, Player.class).getResultList();
+		
 		return playerContract;
 	}
 
