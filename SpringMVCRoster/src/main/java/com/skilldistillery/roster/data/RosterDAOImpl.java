@@ -39,10 +39,10 @@ public class RosterDAOImpl implements RosterDAO {
 	}
 
 	@Override
-	public Player findbyPosition(String position) {
-		Player playerPosition = em.find(Player.class, position);
-		if (playerPosition != null) {
-		}
+	public List<Player> findbyPosition(String position) {
+		String query = "SELECT player FROM Roster player WHERE player.position = ?";
+		List<Player> playerPosition = em.createQuery(query, Player.class).getResultList();
+		
 		return playerPosition;
 	}
 
