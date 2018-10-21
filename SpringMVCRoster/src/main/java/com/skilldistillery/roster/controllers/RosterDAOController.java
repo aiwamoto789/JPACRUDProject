@@ -30,7 +30,7 @@ public class RosterDAOController {
 	    return mv;
 	}
 
-	@RequestMapping(path="getPlayer.do", method = RequestMethod.GET)
+	@RequestMapping(path="getPlayers.do", method = RequestMethod.GET)
 	public ModelAndView findUpForContract(Boolean contractYear) {
 		ModelAndView mv = new ModelAndView();
 		List<Player> players = rosterDAO.findUpForContract("true");     
@@ -41,13 +41,13 @@ public class RosterDAOController {
 	    return mv;
 	}
 
-	@RequestMapping(path="getPlayer.do", method = RequestMethod.GET)
+	@RequestMapping(path="getPlayers.do", method = RequestMethod.GET)
 	public ModelAndView findbyPosition(String position) {
 		ModelAndView mv = new ModelAndView();
-		Player player = rosterDAO.findbyPosition(position);     
+		List<Player> players = rosterDAO.findbyPosition(position);     
 	    // film is unmanaged after it is outside of the transaction that exists in the DAO
 		//getResultList()
-	    mv.addObject("player", player);
+	    mv.addObject("player", players);
 	    mv.setViewName("/WEB-INF/Roster/result.jsp");
 	    return mv;
 	}
