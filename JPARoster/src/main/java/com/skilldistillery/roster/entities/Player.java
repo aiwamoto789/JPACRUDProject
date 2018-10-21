@@ -82,7 +82,7 @@ public class Player {
 	public void setExperience(String experience) {
 		this.experience = experience;
 	}
-	public String isContractYear() {
+	public String getContractYear() {
 		return contractYear;
 	}
 	public void setContractYear(String contractYear) {

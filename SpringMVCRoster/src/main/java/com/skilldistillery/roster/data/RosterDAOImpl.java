@@ -76,7 +76,7 @@ public class RosterDAOImpl implements RosterDAO {
 			managedPlayer.setWeight(player.getWeight());
 			managedPlayer.setAge(player.getAge());
 			managedPlayer.setExperience(player.getExperience());
-			managedPlayer.setContractYear(player.isContractYear());
+			managedPlayer.setContractYear(player.getContractYear());
 			managedPlayer.setCollege(player.getCollege());
 			em.getTransaction().commit();
 		}
