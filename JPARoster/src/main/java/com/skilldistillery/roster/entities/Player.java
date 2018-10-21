@@ -27,7 +27,6 @@ public class Player {
 	@Column(name="contract_year")
 	private String contractYear;
 	private String college;
-	
 	public int getPlayerId() {
 		return playerId;
 	}
@@ -171,8 +170,6 @@ public class Player {
 				+ ", age=" + age + ", experience=" + experience + ", contractYear=" + contractYear + ", college="
 				+ college + "]";
 	}
-	
-	
 	public Player(int playerId, String playerName, String position, String rosterStatus, int number, double height,
 			int weight, int age, String experience, String contractYear, String college) {
 		super();

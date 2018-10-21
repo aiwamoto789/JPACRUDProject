@@ -1,5 +1,6 @@
 package com.skilldistillery.roster.controllers;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,21 +53,43 @@ public class RosterDAOController {
 	}
 
 	@RequestMapping(path="createPlayer.do", method = RequestMethod.POST)
-	public Player create(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+	public ModelAndView create(Player player) throws SQLException{
+		rosterDAO.create(player);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject(player);
+		mv.setViewName("WEB-INF/views/result.jsp");
+
+		return mv;
 	}
 
 	@RequestMapping(path="updatePlayer.do", method = RequestMethod.POST)
-	public Player update(int id, Player player) {
-		// TODO Auto-generated method stub
-		return null;
+	public ModelAndView update(int id, Player player) throws SQLException{
+		Player updated = rosterDAO.update(id, player);
+		ModelAndView mv = new ModelAndView();
+		String msg;
+		if (updated != null) {
+			msg = "Player was successfuly updated";
+		} else {
+			msg = "Player was not successfuly updated";
+		}
+		mv.addObject("message", msg);
+		mv.setViewName("WEB-INF/views/editResult.jsp");
+		return mv;
 	}
 
 	@RequestMapping(path="cutPlayer.do", method = RequestMethod.POST)
-	public boolean cut(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public ModelAndView cut(int id) throws SQLException{
+		boolean deleted = rosterDAO.cut(id);
+		ModelAndView mv = new ModelAndView();
+		String msg;
+		if (deleted) {
+			msg = "Player is no longer on roster";
+		} else {
+			msg = "Player was not successfully cut";
+		}
+		mv.addObject("message", msg);
+		mv.setViewName("WEB-INF/views/delete.jsp");
+		return mv;
 	}
 
 }

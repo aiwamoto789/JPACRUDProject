@@ -49,7 +49,7 @@ class RosterTests {
 		assertEquals(6.3, player.getHeight());
 		assertEquals(250, player.getWeight());
 		assertEquals(29, player.getAge());
-		assertEquals(8, player.getExperience());
+		assertEquals("8", player.getExperience());
 		assertEquals("false", player.getContractYear());
 		assertEquals("Texas A&M", player.getCollege());
 		
