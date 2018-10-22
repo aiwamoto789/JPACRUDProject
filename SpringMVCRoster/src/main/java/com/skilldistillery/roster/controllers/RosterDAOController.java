@@ -35,7 +35,7 @@ public class RosterDAOController {
 		// DAO
 
 		mv.addObject("player", player);
-		mv.setViewName("/WEB-INF/film/result.jsp");
+		mv.setViewName("/WEB-INF/Views/result.jsp");
 		return mv;
 	}
 
@@ -46,8 +46,8 @@ public class RosterDAOController {
 		// player is unmanaged after it is outside of the transaction that exists in the
 		// DAO
 
-		mv.addObject("player", players);
-		mv.setViewName("/WEB-INF/film/result.jsp");
+		mv.addObject("players", players);
+		mv.setViewName("/WEB-INF/Views/result.jsp");
 		return mv;
 	}
 
@@ -58,8 +58,8 @@ public class RosterDAOController {
 		// player is unmanaged after it is outside of the transaction that exists in the
 		// DAO
 		// getResultList()
-		mv.addObject("player", player);
-		mv.setViewName("/WEB-INF/Roster/result.jsp");
+		mv.addObject("players", player);
+		mv.setViewName("/WEB-INF/Views/result.jsp");
 		return mv;
 	}
 
@@ -68,7 +68,7 @@ public class RosterDAOController {
 		rosterDAO.create(player);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject(player);
-		mv.setViewName("WEB-INF/views/result.jsp");
+		mv.setViewName("WEB-INF/Views/result.jsp");
 
 		return mv;
 	}
@@ -84,7 +84,7 @@ public class RosterDAOController {
 			msg = "Player was not successfuly updated";
 		}
 		mv.addObject("message", msg);
-		mv.setViewName("WEB-INF/views/editPlayer.jsp");
+		mv.setViewName("WEB-INF/Views/editPlayer.jsp");
 		return mv;
 	}
 
@@ -99,7 +99,7 @@ public class RosterDAOController {
 			msg = "Player was not successfully cut";
 		}
 		mv.addObject("message", msg);
-		mv.setViewName("WEB-INF/views/cut.jsp");
+		mv.setViewName("WEB-INF/Views/cut.jsp");
 		return mv;
 	}
 
