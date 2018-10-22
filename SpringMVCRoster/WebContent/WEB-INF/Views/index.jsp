@@ -14,7 +14,7 @@
 	</form>
 	<c:forEach var="players" items="${players}">
 			<ul>
-				<li><a href="getFilm.do?id=${player.id}">${player.name}</a></li>
+				<li><a href="getPlayer.do?id=${player.id}">${player.name}</a></li>
 			</ul>
 		</c:forEach>
 </body>

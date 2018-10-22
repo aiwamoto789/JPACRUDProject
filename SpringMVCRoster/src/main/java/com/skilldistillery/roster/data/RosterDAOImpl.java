@@ -20,9 +20,8 @@ public class RosterDAOImpl implements RosterDAO {
 	@Override
 	public Player findbyName(String name) {
 		Player playerName = em.find(Player.class, name);
-		if (playerName != null) {
-		}
-		return playerName;
+			return playerName;
+		
 	}
 	@Override
 	public List<Player> getAllPlayers() {

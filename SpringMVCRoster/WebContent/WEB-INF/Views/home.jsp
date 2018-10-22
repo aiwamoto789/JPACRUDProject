@@ -12,8 +12,8 @@
 <body>
 	<h3>Search Roster</h3>
 
-	<form action="getPlayer.do" method="GET">
-		Player Name: <input type="number" name="id"
+	<form action="getPlayerByName.do" method="GET">
+		Player Name: <input type="text" name="id"
 			value="Please enter a player name" /> <input type="submit"
 			value="Search" />
 	</form>
@@ -23,10 +23,10 @@
 			value="Please enter a position " /> <input type="submit"
 			value="Search" />
 	</form>
-	<form action="getPlayers.do" method="GET">
-		Last year of contract : <input type="text" name="playerPosition"
-			value="Please enter a position " /> <input type="submit"
-			value="Search" />
+	<form action="getAllPlayers.do" method="GET">Show full roster: <input type="submit" value="Search" />
+	</form>
+	<form action="getPlayerByContract.do" method="GET">
+		Last year of contract :  <input type="submit" value="Search" />
 	</form>
 	<br>
 	<br>

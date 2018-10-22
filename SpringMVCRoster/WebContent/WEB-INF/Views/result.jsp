@@ -33,7 +33,7 @@
 			<form action="cutPlayer.do" method="POST">
 				Cut Player?
 				<button onclick="myFunction()">Cut Player</button>
-				<input type="hidden" name="id" value="${film.id}" />
+				<input type="hidden" name="id" value="${player}.id}" />
 				<script>
 					function myFunction() {
 						confirm("Are you sure you wish to cut this player from the roster?");
