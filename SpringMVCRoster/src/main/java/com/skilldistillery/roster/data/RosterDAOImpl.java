@@ -1,5 +1,6 @@
 package com.skilldistillery.roster.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,7 +20,10 @@ public class RosterDAOImpl implements RosterDAO {
 
 	@Override
 	public Player findbyName(String name) {
-		Player playerName = em.find(Player.class, name);
+		String query = "SELECT player FROM Player player WHERE player.playerName= :name";
+		Player playerName = em.createQuery(query, Player.class)
+				.setParameter("name", name)
+				.getSingleResult();
 			return playerName;
 		
 	}
@@ -31,17 +35,19 @@ public class RosterDAOImpl implements RosterDAO {
 	}
 	@Override
 	public List<Player> findUpForContract(String contractYear) {
-		String query = "SELECT player FROM Roster player WHERE player.contractYear = 'true'";
-		List<Player> playerContract = em.createQuery(query, Player.class).getResultList();
+		String query = "SELECT player FROM Player player WHERE player.contractYear = :true";
+		List<Player> playerContract = em.createQuery(query, Player.class).setParameter("true", contractYear)
+				.getResultList();
 		
 		return playerContract;
 	}
 
 	@Override
 	public List<Player> findbyPosition(String position) {
-		String query = "SELECT player FROM Roster player WHERE player.position = ?";
-		List<Player> playerPosition = em.createQuery(query, Player.class).getResultList();
-		
+		String query = "SELECT player FROM Player player WHERE player.position = :position";
+		List<Player> playerPosition = em.createQuery(query, Player.class)
+				.setParameter("position", position).getResultList();
+
 		return playerPosition;
 	}
 

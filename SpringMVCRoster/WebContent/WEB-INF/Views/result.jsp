@@ -12,8 +12,8 @@
 	<c:choose>
 		<c:when test="${not empty player}">
 			<ul>
-				<li>Player ID: ${player.id }</li>
-				<li>Player Name: ${player.name }</li>
+				<li>Player ID: ${player.playerId }</li>
+				<li>Player Name: ${player.playerName }</li>
 				<li>Position: ${player.position }</li>
 				<li>Roster Status: ${player.rosterStatus }</li>
 				<li>Number: ${player.number}</li>
@@ -27,13 +27,13 @@
 			<form action="updatePlayer.do" method="GET">
 				Update Player?
 				<button>Update Player</button>
-				<input type="hidden" name="id" value="${film.id}" />
+				<input type="hidden" name="id" value="${player.playerId}" />
 			</form>
 			<br>
 			<form action="cutPlayer.do" method="POST">
 				Cut Player?
 				<button onclick="myFunction()">Cut Player</button>
-				<input type="hidden" name="id" value="${player}.id}" />
+				<input type="hidden" name="id" value="${player.playerId}" />
 				<script>
 					function myFunction() {
 						confirm("Are you sure you wish to cut this player from the roster?");
@@ -44,8 +44,8 @@
 		<c:when test="${not empty players}">
 			<c:forEach items="${players}" var="player">
 				<ul>
-					<li>Player ID: ${player.id }</li>
-					<li>Player Name: ${player.name }</li>
+					<li>Player ID: ${player.playerId }</li>
+					<li>Player Name: ${player.playerName }</li>
 					<li>Position: ${player.position }</li>
 					<li>Roster Status: ${player.rosterStatus }</li>
 					<li>Number: ${player.number}</li>
@@ -73,7 +73,7 @@
 			<h4>No player found</h4>
 		</c:otherwise>
 	</c:choose>
-	<form action="index.do">
+	<form action="home.do">
 		<input type="submit" value="Home">
 	</form>
 </body>

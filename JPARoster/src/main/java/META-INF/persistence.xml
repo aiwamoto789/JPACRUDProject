@@ -13,9 +13,9 @@
       <property name="javax.persistence.jdbc.url"
         value="jdbc:mysql://localhost:3306/RosterDB?useSSL=false" />
       <property name="javax.persistence.jdbc.user"
-        value="RosterUser"/>
+        value="roster_user"/>
       <property name="javax.persistence.jdbc.password"
-        value="braintrauma" />
+        value="briantrauma" />
       <property name="javax.persistence.jdbc.driver"
         value="com.mysql.jdbc.Driver" />
 

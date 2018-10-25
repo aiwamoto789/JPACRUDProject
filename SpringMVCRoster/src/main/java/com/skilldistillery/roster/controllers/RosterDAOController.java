@@ -54,14 +54,15 @@ public class RosterDAOController {
 	@RequestMapping(path = "getPlayerByPosition.do", method = RequestMethod.GET)
 	public ModelAndView findbyPosition(String position) {
 		ModelAndView mv = new ModelAndView();
-		List<Player> player = rosterDAO.findbyPosition(position);
-		// player is unmanaged after it is outside of the transaction that exists in the
+		List<Player> players = rosterDAO.findbyPosition(position);
+		System.out.println(players);
+		// players is unmanaged after it is outside of the transaction that exists in the
 		// DAO
-		// getResultList()
-		mv.addObject("players", player);
+		mv.addObject("players", players);
 		mv.setViewName("/WEB-INF/Views/result.jsp");
 		return mv;
 	}
+	
 
 	@RequestMapping(path = "createPlayer.do", method = RequestMethod.POST)
 	public ModelAndView create(Player player) throws SQLException {
