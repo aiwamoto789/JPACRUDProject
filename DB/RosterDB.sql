@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `Roster` (
   `weight` INT NOT NULL,
   `age` INT NOT NULL,
   `experience` VARCHAR(30) NOT NULL,
-  `contract_year` VARCHAR(45) BINARY NOT NULL,
+  `contract_year` VARCHAR(5) NOT NULL,
   `college` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`player_id`))
 ENGINE = InnoDB;
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 SET SQL_MODE = '';
 DROP USER IF EXISTS RosterUser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE USER 'RosterUser'@'localhost' IDENTIFIED BY 'braintrauma';
+CREATE USER 'RosterUser'@'localhost' IDENTIFIED BY 'briantrauma';
 
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'RosterUser'@'localhost';
 GRANT SELECT, ALTER, CREATE, INSERT, INDEX, DELETE, UPDATE ON TABLE `RosterDB`.`Roster` TO 'RosterUser'@'localhost';
