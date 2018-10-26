@@ -53,6 +53,7 @@ public class RosterDAOImpl implements RosterDAO {
 
 	@Override
 	public Player create(Player player) {
+
 		// start the transaction
 		em.getTransaction().begin();
 		// write the actor to the database
