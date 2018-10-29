@@ -35,7 +35,7 @@ public class RosterDAOImpl implements RosterDAO {
 	}
 	@Override
 	public List<Player> findUpForContract(String contractYear) {
-		String query = "SELECT player FROM Player player WHERE player.contractYear = :true";
+		String query = "SELECT player FROM Player player WHERE player.contractYear = :'true'";
 		List<Player> playerContract = em.createQuery(query, Player.class).setParameter("true", contractYear)
 				.getResultList();
 		
@@ -62,6 +62,7 @@ public class RosterDAOImpl implements RosterDAO {
 		em.flush();
 		// commit the changes (actually perform the operation)
 		em.getTransaction().commit();
+		em.close();
 		return player;
 	}
 
@@ -71,7 +72,7 @@ public class RosterDAOImpl implements RosterDAO {
 
 		// retrieve a "managed" player entity
 		Player managedPlayer = em.find(Player.class, id);
-
+		
 		if (managedPlayer != null) {
 			// update the values of the managed Player entity
 			managedPlayer.setPlayerName(player.getPlayerName());

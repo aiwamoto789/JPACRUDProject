@@ -40,7 +40,7 @@ public class RosterDAOController {
 	}
 
 	@RequestMapping(path = "getPlayerByContract.do", method = RequestMethod.GET)
-	public ModelAndView findUpForContract(Boolean contractYear) {
+	public ModelAndView findUpForContract(String contractYear) {
 		ModelAndView mv = new ModelAndView();
 		List<Player> players = rosterDAO.findUpForContract("true");
 		// player is unmanaged after it is outside of the transaction that exists in the
@@ -74,7 +74,7 @@ public class RosterDAOController {
 		return mv;
 	}
 
-	@RequestMapping(path = "updatePlayer.do", method = RequestMethod.POST)
+	@RequestMapping(path = "updatePlayer.do", method = RequestMethod.GET)
 	public ModelAndView update(int id, Player player) throws SQLException {
 		Player updated = rosterDAO.update(id, player);
 		ModelAndView mv = new ModelAndView();
