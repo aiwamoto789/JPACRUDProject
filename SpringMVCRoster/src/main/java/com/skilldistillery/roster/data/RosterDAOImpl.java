@@ -1,6 +1,5 @@
 package com.skilldistillery.roster.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,24 +20,30 @@ public class RosterDAOImpl implements RosterDAO {
 	@Override
 	public Player findbyName(String name) {
 		String query = "SELECT player FROM Player player WHERE player.playerName= :name";
-		Player playerName = em.createQuery(query, Player.class)
-				.setParameter("name", name)
-				.getSingleResult();
-			return playerName;
-		
+		Player playerName = em.createQuery(query, Player.class).setParameter("name", name).getSingleResult();
+		return playerName;
+
 	}
+	
+	@Override
+	public Player findById(int id) {
+		Player player = em.find(Player.class, id);
+		return player;
+	}
+
 	@Override
 	public List<Player> getAllPlayers() {
 		String query = "SELECT player FROM Player player";
 		List<Player> players = em.createQuery(query, Player.class).getResultList();
 		return players;
 	}
+
 	@Override
 	public List<Player> findUpForContract(String contractYear) {
-		String query = "SELECT player FROM Player player WHERE player.contractYear = :'true'";
-		List<Player> playerContract = em.createQuery(query, Player.class).setParameter("true", contractYear)
-				.getResultList();
-		
+		String query = "SELECT p FROM Player p WHERE p.contractYear = :true";
+		List<Player> playerContract = em.createQuery(query, Player.class)
+				.setParameter("true", contractYear).getResultList();
+		System.out.println(playerContract);
 		return playerContract;
 	}
 
@@ -46,7 +51,8 @@ public class RosterDAOImpl implements RosterDAO {
 	public List<Player> findbyPosition(String position) {
 		String query = "SELECT player FROM Player player WHERE player.position = :position";
 		List<Player> playerPosition = em.createQuery(query, Player.class)
-				.setParameter("position", position).getResultList();
+				.setParameter("position", position)
+				.getResultList();
 
 		return playerPosition;
 	}
@@ -55,24 +61,27 @@ public class RosterDAOImpl implements RosterDAO {
 	public Player create(Player player) {
 
 		// start the transaction
-		em.getTransaction().begin();
+//		em.getTransaction().begin();
 		// write the actor to the database
-		em.persist(player);
-		// update the "local" Actor object
-		em.flush();
-		// commit the changes (actually perform the operation)
-		em.getTransaction().commit();
-		em.close();
-		return player;
+		if (player != null) {
+			System.out.println(player);
+			em.persist(player);
+			// update the "local" Player object
+			em.flush();
+			// commit the changes (actually perform the operation)
+//		em.getTransaction().commit();
+//		em.close();
+			return player;
+		} else
+			return null;
 	}
 
 	@Override
 	public Player update(int id, Player player) {
-		em.getTransaction().begin();
-
+	
 		// retrieve a "managed" player entity
 		Player managedPlayer = em.find(Player.class, id);
-		
+
 		if (managedPlayer != null) {
 			// update the values of the managed Player entity
 			managedPlayer.setPlayerName(player.getPlayerName());
@@ -85,11 +94,11 @@ public class RosterDAOImpl implements RosterDAO {
 			managedPlayer.setExperience(player.getExperience());
 			managedPlayer.setContractYear(player.getContractYear());
 			managedPlayer.setCollege(player.getCollege());
-			em.getTransaction().commit();
+			em.persist(managedPlayer);
+			em.flush();
 		}
-		em.close();
 		return managedPlayer;
-
+		
 	}
 
 	@Override
@@ -99,7 +108,6 @@ public class RosterDAOImpl implements RosterDAO {
 			em.remove(deletePlayer);
 			return true;
 		} else {
-			em.getTransaction().rollback();
 			return false;
 		}
 	}

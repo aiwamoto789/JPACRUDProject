@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="index.do">
+<form action="home.do">
 <c:out value="${message}"/>
 <input type ="submit" value="Home">
 </form>

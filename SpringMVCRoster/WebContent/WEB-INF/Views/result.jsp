@@ -57,7 +57,7 @@
 					<li>Last year of Contract?: ${player.contractYear }</li>
 				</ul>
 			</c:forEach>
-			<form action="cutPlayer.do" method="GET">
+			<form action="cutPlayer.do" method="POST">
 				Enter Player ID you wish to cut: <input type="number" name="id"
 					value="Please enter a player ID" /> <input type="submit"
 					value="Search" />

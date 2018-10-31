@@ -23,22 +23,24 @@
 			value="Please enter a position " /> <input type="submit"
 			value="Search" />
 	</form>
-	<form action="getPlayerByContract.do" method="GET">
+	<form action="findUpForContract.do" method="GET">
 		Last year of contract? :  <input type="submit" name="contractYear" value="Search" />
 	</form>
 	<br>
 	<br>
 	<h3>Add a Player to Roster</h3>
-	<form action="addPlayer.do" method="POST">
+	<form action="createPlayer.do" method="POST">
 		<br> 
-		Name: <input type="text" name="name" value="Enter new Player's name" /><br>
+		Name: <input type="text" name="playerName" value="Enter new Player's name" /><br>
 		Position: <input type="text" name="position" value="Enter the Player's position" /><br> 
 		Number: <input type="number" name="number" value="Enter a Jersey Number" /><br> 
-		Height: <input type="number" step="0.01" name="height" value="Enter Player's height" /><br> 
+		Height (feet.inches): <input type="number" step="0.01" name="height" value="Enter Player's height" /><br> 
 		Weight: <input type="number" name="weight" value="Enter Player's weight" /><br>
 		Age: <input type="number" name="age" value="Enter the Player's age" /><br>
 		Experience: <input type="text" name="experience" value="Enter the player's experience in years, or R for rookie" /><br> 
 		College: <input type="text" name="college" value="Enter the Player's Alma Mater" /><br> 
+		<input type="hidden" name="contractYear" value="false" />
+		<input type="hidden" name="rosterStatus" value="Active" />
 		<input type="submit" value="Submit" />
 	</form>
 

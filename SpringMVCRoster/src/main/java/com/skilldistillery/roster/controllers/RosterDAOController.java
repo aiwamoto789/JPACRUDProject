@@ -39,13 +39,13 @@ public class RosterDAOController {
 		return mv;
 	}
 
-	@RequestMapping(path = "getPlayerByContract.do", method = RequestMethod.GET)
+	@RequestMapping(path = "findUpForContract.do", method = RequestMethod.GET)
 	public ModelAndView findUpForContract(String contractYear) {
 		ModelAndView mv = new ModelAndView();
 		List<Player> players = rosterDAO.findUpForContract("true");
 		// player is unmanaged after it is outside of the transaction that exists in the
 		// DAO
-
+		System.out.println(players);
 		mv.addObject("players", players);
 		mv.setViewName("/WEB-INF/Views/result.jsp");
 		return mv;
@@ -73,10 +73,20 @@ public class RosterDAOController {
 
 		return mv;
 	}
+	
+	@RequestMapping(path="updatePlayer.do", method=RequestMethod.GET)
+	public ModelAndView viewUpdatePage(int id) {
+		ModelAndView mv = new ModelAndView();
+		Player player = rosterDAO.findById(id);
+		mv.addObject("player", player);
+		mv.setViewName("WEB-INF/Views/editPlayer.jsp");
+		
+		return mv;
+	}
 
-	@RequestMapping(path = "updatePlayer.do", method = RequestMethod.GET)
-	public ModelAndView update(int id, Player player) throws SQLException {
-		Player updated = rosterDAO.update(id, player);
+	@RequestMapping(path = "submitUpdatePlayer.do", method = RequestMethod.POST)
+	public ModelAndView update(Player player) throws SQLException {
+		Player updated = rosterDAO.update(player.getPlayerId(), player);
 		ModelAndView mv = new ModelAndView();
 		String msg;
 		if (updated != null) {
@@ -84,8 +94,9 @@ public class RosterDAOController {
 		} else {
 			msg = "Player was not successfuly updated";
 		}
+		mv.addObject("player", player);
 		mv.addObject("message", msg);
-		mv.setViewName("WEB-INF/Views/editPlayer.jsp");
+		mv.setViewName("WEB-INF/Views/result.jsp");
 		return mv;
 	}
 

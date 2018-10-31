@@ -12,4 +12,5 @@ public interface RosterDAO {
 	public Player update(int id, Player player);
 	public boolean cut(int id);
 	public List<Player> getAllPlayers();
+	Player findById(int id);
 }
